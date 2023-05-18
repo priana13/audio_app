@@ -12,7 +12,9 @@ class MusicController extends Controller
      */
     public function index()
     {
-        //
+        $musics = Music::paginate(10);
+
+        return response()->json($musics); 
     }
 
     /**

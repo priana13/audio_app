@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CreatorController;
+use App\Http\Controllers\MusicController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('creators', [CreatorController::class, 'index']);
+Route::get('musics', [MusicController::class, 'index']);
+
