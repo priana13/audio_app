@@ -10,4 +10,9 @@ class PlayList extends Model
     use HasFactory;
 
     protected $table = 'playlists';
+
+    public function user(){
+
+        return $this->belongsTo(User::class);
+    }
 }
