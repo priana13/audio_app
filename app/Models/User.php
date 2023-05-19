@@ -43,8 +43,8 @@ class User extends Authenticatable
     ];
 
 
-    public function playList(){
+    public function play_list(){
 
-        return $this->hasMany(PlayList::class);
+        return $this->hasMany(PlayList::class, 'user_id');
     }
 }

@@ -11,8 +11,17 @@ class PlayList extends Model
 
     protected $table = 'playlists';
 
+    protected $guarded = [];
+
+    protected $hidden = ['created_at', 'updated_at', 'user_id'];
+
     public function user(){
 
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
+
+    // public function musics(){
+
+    //     return $this->hasManyThrough('musics','playlists_musics', 'musics_id', 'play_list_id');
+    // }
 }

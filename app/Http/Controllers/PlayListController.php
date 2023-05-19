@@ -10,9 +10,11 @@ class PlayListController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $playList = auth()->user()->playlists;      
+        // $playList = $request->user()->playlists;    
+        
+        return $request->user()->play_list;
 
         return response()->json($playList, 200);
     }
@@ -20,34 +22,47 @@ class PlayListController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string', 
+            'detail' => 'string'
+        ]);
+
+        $cek = PlayList::where('name', $request->name)
+                        ->where('user_id', $request->user()->id)->first();
+
+        if($cek){
+
+            return response()->json([
+                'message' => "Nama Playlist sudah pernah dibuat sebelumnya"
+            ], 422);
+        }
+
+        $playList = PlayList::create([
+            'user_id' => $request->user()->id,
+            'name' => $request->name,
+            'detail' => $request->detail
+        ]);
+
+        return response()->json($playList,201);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
+   
     /**
      * Display the specified resource.
      */
-    public function show(PlayList $playList)
+    public function show(Request $request,  $id)
     {
-        //
+
+        $playlist = PlayList::find($id);
+
+        return response()->json([
+           "play_list" =>  $playlist, 
+           "musics" => ""
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(PlayList $playList)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

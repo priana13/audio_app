@@ -34,7 +34,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
    
     Route::get('creators', [CreatorController::class, 'index']);
     Route::get('musics', [MusicController::class, 'index']);
+
+    // playlist
     Route::get('playlists', [PlayListController::class, 'index']);
+    Route::post('playlists/create', [PlayListController::class, 'create']);
+    Route::get('playlists/{id}/show', [PlayListController::class, 'show']);
     
 
 });
