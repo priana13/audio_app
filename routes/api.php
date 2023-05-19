@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CreatorController;
 use App\Http\Controllers\MusicController;
 use App\Http\Controllers\PlayListController;
@@ -26,6 +27,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Login get api token
 Route::post('login', [LoginController::class, 'authenticate'])->name('login');
+Route::post('register', [RegisterController::class, 'register'])->name('register');
+
 
 Route::middleware(['auth:sanctum'])->group(function () {
    
