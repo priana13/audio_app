@@ -12,7 +12,7 @@ class PlayListController extends Controller
      */
     public function index()
     {
-        $playList = auth()->user();      
+        $playList = auth()->user()->playlists;      
 
         return response()->json($playList, 200);
     }
