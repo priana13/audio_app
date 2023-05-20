@@ -59,6 +59,13 @@ class PlayListController extends Controller
 
         $playlist = PlayList::find($id);
 
+        if(!$playlist){
+
+            return response()->json([
+                "message" =>  "Playlist Not Found"
+             ]);
+        }
+
         $musics_ids = $playlist->musics->pluck('id');
         
 
@@ -72,16 +79,52 @@ class PlayListController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, PlayList $playList)
+    public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([           
+            'name' => 'string|required'
+        ]);      
+        
+        $playList = PlayList::find($id);
+
+        if(!$playlist){
+
+            return response()->json([
+                "message" =>  "Playlist Not Found"
+             ]);
+        }
+
+        $playList->name = $request->name;
+        $playList->save();
+
+        return response()->json([
+            'message' => 'playlist was updated',
+            'playlist' => $playList
+        ], 200);
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PlayList $playList)
+    public function destroy(Request $request, $id)
     {
-        //
+
+        $playList = PlayList::find($id);    
+
+
+        if(!$playList){
+
+            return response()->json([
+                "message" =>  "Playlist Not Found"
+             ]);
+        }
+
+        $playList->delete();
+
+        return response()->json([
+            'message' => 'playlist was deleted'            
+        ], 200);
     }
 }

@@ -39,7 +39,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('playlists', [PlayListController::class, 'index']);
     Route::post('playlists/create', [PlayListController::class, 'create']);
     Route::get('playlists/{id}/show', [PlayListController::class, 'show']);
-    
+    Route::put('playlists/{id}/update', [PlayListController::class, 'update']);
+    Route::post('playlists/{id}/delete', [PlayListController::class, 'destroy']);    
 
 });
 
