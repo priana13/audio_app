@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MusicCollection;
+use App\Models\Music;
 use App\Models\PlayList;
 use Illuminate\Http\Request;
 
@@ -57,9 +59,12 @@ class PlayListController extends Controller
 
         $playlist = PlayList::find($id);
 
+        $musics_ids = $playlist->musics->pluck('id');
+        
+
         return response()->json([
-           "play_list" =>  $playlist, 
-           "musics" => ""
+           "play_list" =>  $playlist->name, 
+           "musics" => new MusicCollection( Music::whereIn('musics.id', $musics_ids)->get() )
         ]);
     }
 

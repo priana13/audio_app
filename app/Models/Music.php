@@ -12,4 +12,19 @@ class Music extends Model
     protected $table = 'musics';
 
     protected $guarded = [];
+
+    protected $hidden = ['created_at', 'updated_at'];
+
+
+    public function play_list(){
+
+        return $this->belongsToMany(PlayList::class, 'playlist_musics', 'musics_id', 'playlist_id');       
+
+
+    }
+
+    public function creator(){
+
+        return $this->belongsTo(Creator::class);
+    }
 }

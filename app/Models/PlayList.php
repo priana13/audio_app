@@ -20,8 +20,9 @@ class PlayList extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // public function musics(){
+    public function musics(){
 
-    //     return $this->hasManyThrough('musics','playlists_musics', 'musics_id', 'play_list_id');
-    // }
+        return $this->belongsToMany(Music::class, PlayListMusic::class, 'playlist_id', 'musics_id');
+
+    }
 }

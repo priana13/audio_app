@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Music;
+use App\Models\PlayList;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +18,12 @@ class PlayListMusicFactory extends Factory
      */
     public function definition(): array
     {
+        $play_list = PlayList::find(rand(1,20));
+       
         return [
-            //
+            'musics_id' => rand(1,51),
+            'playlist_id' => $play_list->id,
+            'user_id' => $play_list->user_id
         ];
     }
 }

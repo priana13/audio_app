@@ -11,6 +11,8 @@ class PlayListMusic extends Model
 
     protected $guarded = [];
 
+    protected $table = 'playlists_musics';
+
     public function user(){
 
         return $this->belongsTo(User::class);
