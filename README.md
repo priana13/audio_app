@@ -23,5 +23,8 @@ php artisan migrate --seed
 
 php artisan serve
 
+Dokumentasi API bisa dilihat di sini: 
+- [Audio App - Postman](https://documenter.getpostman.com/view/12367169/2s93m1b5BJ)
+
 selamat mencoba. 
 
