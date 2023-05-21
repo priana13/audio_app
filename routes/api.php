@@ -32,7 +32,11 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
 
 Route::middleware(['auth:sanctum'])->group(function () {
    
+    // Creators
     Route::get('creators', [CreatorController::class, 'index']);
+    Route::get('creators/{creator}/show', [CreatorController::class, 'show']);
+    
+
     Route::get('musics', [MusicController::class, 'index']);
 
     // playlist

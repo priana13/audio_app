@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MusicCollection;
 use App\Models\Creator;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,7 @@ class CreatorController extends Controller
      */
     public function show(Creator $creator)
     {
-        //
+        return new MusicCollection($creator->musics) ;
     }
 
     /**
