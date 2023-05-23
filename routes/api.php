@@ -29,6 +29,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('login', [LoginController::class, 'authenticate'])->name('login');
 Route::post('register', [RegisterController::class, 'register'])->name('register');
 
+// socialite
+Route::get('auth/google/callback', [LoginController::class, 'googleCallback'])->name('socialite.google');
+
 
 Route::middleware(['auth:sanctum'])->group(function () {
    

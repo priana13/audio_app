@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -72,6 +73,18 @@ class LoginController extends Controller
         }
  
         return response()->json(['error' => 'Invalid credentials'], 401);
+    }
+
+
+    public function googleCallback()
+    {
+        $user = Socialite::driver('google')->stateless()->user();
+    
+        // Lakukan sesuatu dengan data pengguna yang diterima
+    
+        return response()->json([
+            'user' => $user,
+        ]);
     }
 
 }
