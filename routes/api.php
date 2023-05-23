@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CreatorController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MusicController;
+use App\Http\Controllers\PavoriteController;
 use App\Http\Controllers\PlayListController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -54,6 +55,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('history/create', [HistoryController::class, 'store']);
     Route::get('histories', [HistoryController::class, 'index']);
     Route::post('histories/delete', [HistoryController::class, 'destroy']);
+
+    // Pavorite
+    Route::get('pavorites', [PavoriteController::class, 'index']);
+    Route::post('pavorite/create', [PavoriteController::class, 'store']);
+    Route::post('pavorite/{id}/delete', [PavoriteController::class, 'destroy']);
 
 });
 

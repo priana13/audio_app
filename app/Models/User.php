@@ -53,5 +53,10 @@ class User extends Authenticatable
         return $this->hasMany(History::class, 'user_id');
     }
 
+    public function pavorites(){
+
+        return $this->hasMany(Pavorite::class, 'user_id');
+    }
+
 
 }

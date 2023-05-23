@@ -32,4 +32,10 @@ class Music extends Model
 
         return $this->hasMany(History::class, 'musics_id');
     }
+
+    public function pavorites(){
+
+        return $this->hasMany(Pavorite::class, 'musics_id');
+    }
+
 }
