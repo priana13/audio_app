@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CreatorController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MusicController;
 use App\Http\Controllers\PlayListController;
 use Illuminate\Http\Request;
@@ -48,6 +49,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('playlists/{id}/show', [PlayListController::class, 'show']);
     Route::put('playlists/{id}/update', [PlayListController::class, 'update']);
     Route::post('playlists/{id}/delete', [PlayListController::class, 'destroy']);    
+
+    // History
+    Route::post('history/create', [HistoryController::class, 'store']);
+    Route::get('histories', [HistoryController::class, 'index']);
+    Route::post('histories/delete', [HistoryController::class, 'destroy']);
 
 });
 

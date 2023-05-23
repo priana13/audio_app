@@ -27,4 +27,9 @@ class Music extends Model
 
         return $this->belongsTo(Creator::class);
     }
+
+    public function histories(){
+
+        return $this->hasMany(History::class, 'musics_id');
+    }
 }
