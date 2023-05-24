@@ -25,6 +25,8 @@ class MusicFactory extends Factory
             'thumbnail' => $this->faker->imageUrl(),
             'audio' => $this->faker->url(),
             'creator_id' => rand(1,4),
+            'artist_id' => rand(1,4),
+            'album_id' => rand(1,4),
             'is_premium' => false,
 
         ];

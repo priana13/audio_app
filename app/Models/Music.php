@@ -28,6 +28,16 @@ class Music extends Model
         return $this->belongsTo(Creator::class);
     }
 
+    public function album(){
+
+        return $this->belongsTo(Album::class);
+    }
+
+    public function artist(){
+
+        return $this->belongsTo(Artist::class);
+    }
+
     public function histories(){
 
         return $this->hasMany(History::class, 'musics_id');

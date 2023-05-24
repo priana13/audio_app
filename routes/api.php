@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CreatorController;
@@ -60,6 +62,17 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('pavorites', [PavoriteController::class, 'index']);
     Route::post('pavorite/create', [PavoriteController::class, 'store']);
     Route::post('pavorite/{id}/delete', [PavoriteController::class, 'destroy']);
+
+    // Album
+    Route::get('albums', [AlbumController::class, 'index']);
+    Route::get('albums/{album}/show', [AlbumController::class, 'show']);
+
+    // Artist
+    Route::get('artists', [ArtistController::class, 'index']);
+    Route::get('artists/{artist}/show', [ArtistController::class, 'show']);
+    
+
+
 
 });
 
