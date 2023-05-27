@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -76,15 +78,55 @@ class LoginController extends Controller
     }
 
 
-    public function googleCallback()
-    {
-        $user = Socialite::driver('google')->stateless()->user();
+    // public function googleCallback()
+    // {
+    //     $user = Socialite::driver('google')->stateless()->user();
     
-        // Lakukan sesuatu dengan data pengguna yang diterima
+    //     // Lakukan sesuatu dengan data pengguna yang diterima
     
-        return response()->json([
-            'user' => $user,
-        ]);
+    //     return response()->json([
+    //         'user' => $user,
+    //     ]);
+    // }
+
+
+    public function redirectToGoogle()
+    {      
+
+        return Socialite::driver('google')->redirect();
     }
+
+        /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function handleGoogleCallback()
+    {
+        try {
+            $user = Socialite::driver('google')->user();
+            $finduser = User::where('google_id', $user->id)->first();
+            
+            if ($finduser) {
+                Auth::login($finduser);
+                return redirect()->intended('/');
+            } else {
+                $newUser = User::create([
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'google_id' => $user->id,
+                    'password' => Hash::make("123456"),
+                ]);
+
+                Auth::login($newUser);
+
+                return redirect()->intended('/');
+            }
+
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
 
 }
