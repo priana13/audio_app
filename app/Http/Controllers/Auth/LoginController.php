@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Laravel\Socialite\Facades\Socialite;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use App\Providers\RouteServiceProvider;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -103,29 +104,57 @@ class LoginController extends Controller
      */
     public function handleGoogleCallback()
     {
-        try {
-            $user = Socialite::driver('google')->user();
-            $finduser = User::where('google_id', $user->id)->first();
-            
-            if ($finduser) {
-                Auth::login($finduser);
-                return redirect()->intended('/');
-            } else {
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'google_id' => $user->id,
-                    'password' => Hash::make("123456"),
-                ]);
 
-                Auth::login($newUser);
+        $response = Http::post('https://www.googleapis.com/oauth2/v4/token', [
+            'code' => $_GET['code'], // Ganti $code dengan kode otorisasi yang Anda tangkap sebelumnya
+            'client_id' => config('app.google.client_id'),
+            'client_secret' => config('app.google.client_secret'),
+            'redirect_uri' => config('app.google.redirect'),
+            'grant_type' => 'authorization_code',
+        ]);
+      
+        
+        if ($response->successful()) {
+            // Token akses berhasil diterima
+            $accessToken = $response->json()['access_token'];
 
-                return redirect()->intended('/');
-            }
+            return $accessToken;
+        
+            // Lakukan sesuatu dengan token akses
+        } else {
+            // Terjadi kesalahan dalam permintaan ke endpoint
+            $errorMessage = $response->json()['error_description'];
 
-        } catch (Exception $e) {
-            dd($e->getMessage());
+            return $errorMessage;
+        
+            // Lakukan penanganan kesalahan
         }
+
+        
+
+        // try {
+        //     $user = Socialite::driver('google')->user();
+        //     $finduser = User::where('google_id', $user->id)->first();
+            
+        //     if ($finduser) {
+        //         Auth::login($finduser);
+        //         return redirect()->intended('/');
+        //     } else {
+        //         $newUser = User::create([
+        //             'name' => $user->name,
+        //             'email' => $user->email,
+        //             'google_id' => $user->id,
+        //             'password' => Hash::make("123456"),
+        //         ]);
+
+        //         Auth::login($newUser);
+
+        //         return redirect()->intended('/dashboard');
+        //     }
+
+        // } catch (Exception $e) {
+        //     dd($e->getMessage());
+        // }
     }
 
 
