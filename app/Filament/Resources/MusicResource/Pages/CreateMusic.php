@@ -9,4 +9,6 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateMusic extends CreateRecord
 {
     protected static string $resource = MusicResource::class;
+
+    protected static string $view = 'filament.resources.music.create-user';
 }

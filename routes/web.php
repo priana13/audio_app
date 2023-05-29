@@ -15,13 +15,13 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('filament.pages.dashboard');
 });
 
 
 // Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // socialite
 Route::get('/google/login', [LoginController::class, 'redirectToGoogle']);
