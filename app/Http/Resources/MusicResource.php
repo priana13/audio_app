@@ -23,6 +23,7 @@ class MusicResource extends JsonResource
             'audio' => $this->audio,
             'creator' => $this->creator->name,
             'album' => $this->album->name,
+            'gendre' => $this->gendre->name,
             'artist' => $this->artist->name,
             'is_premium' => ($this->is_premium)? TRUE: FALSE
         ];

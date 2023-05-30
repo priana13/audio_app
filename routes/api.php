@@ -5,6 +5,7 @@ use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CreatorController;
+use App\Http\Controllers\GendreController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MusicController;
 use App\Http\Controllers\PavoriteController;
@@ -69,7 +70,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     // Artist
     Route::get('artists', [ArtistController::class, 'index']);
     Route::get('artists/{artist}/show', [ArtistController::class, 'show']);
-    
+
+    // Artist
+    Route::get('gendres', [GendreController::class, 'index']);
+    Route::get('gendre/{gendre}/show', [GendreController::class, 'show']);   
 
 
 

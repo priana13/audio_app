@@ -28,6 +28,11 @@ class Music extends Model
         return $this->belongsTo(Creator::class);
     }
 
+    public function gendre(){
+
+        return $this->belongsTo(Gendre::class);
+    }
+
     public function album(){
 
         return $this->belongsTo(Album::class);
