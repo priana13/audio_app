@@ -20,6 +20,8 @@ Route::get('/', function () {
 });
 
 Route::post('music/store', [MusicController::class, 'store'])->name('music.store');
+Route::post('music/{id}/update', [MusicController::class, 'update'])->name('music.update');
+
 
 
 // Auth::routes();

@@ -24,35 +24,35 @@ class CreateMusic extends CreateRecord
     // public $judul, $creator_id, $audio, $detail, $url, $thumbnail, $is_premium = false, $artis_id, $album_id;
 
 
-    public function simpan(){ 
+    // public function simpan(){ 
 
-        $this->validate([
-            'judul' => 'required',
-            'audio' => 'max:10240'
+    //     $this->validate([
+    //         'judul' => 'required',
+    //         'audio' => 'max:10240'
             
-        ]);   
+    //     ]);   
         
-        $path = $this->audio->store('audio');
+    //     $path = $this->audio->store('audio');
 
-        dd($path);
+    //     dd($path);
  
         
-        Music::create([
-            'title' => $this->judul,
-            'creator_id' => $this->creator_id,
-            'detail' => $this->detail,
-            'audio' => $path,
-            'thumbnail' => $this->thumbnail,
-            'is_premium' => $this->is_premium, 
-            'artist_id' => $this->artis_id,
-            'album_id' => $this->album_id
+    //     Music::create([
+    //         'title' => $this->judul,
+    //         'creator_id' => $this->creator_id,
+    //         'detail' => $this->detail,
+    //         'audio' => $path,
+    //         'thumbnail' => $this->thumbnail,
+    //         'is_premium' => $this->is_premium, 
+    //         'artist_id' => $this->artis_id,
+    //         'album_id' => $this->album_id
 
-        ]);
+    //     ]);
 
-        Redirect::to('/admin/music');
+    //     Redirect::to('/admin/music');
 
 
-    }
+    // }
 
 
     public function render(): View
