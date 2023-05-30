@@ -73,7 +73,7 @@
             
             </label>
             <input type="file" class="file-input file-input-bordered file-input-warning w-full max-w-md"  name="audio" />
-            @error('photo') <span class="error">{{ $message }}</span> @enderror  
+            @error('audio') <span class="error text-danger">{{ $message }}</span> @enderror  
             
            
     

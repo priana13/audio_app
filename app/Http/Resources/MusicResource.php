@@ -20,7 +20,7 @@ class MusicResource extends JsonResource
             'detail' => $this->detail, 
             'url' => $this->url,
             'thumbnail' => $this->thumbnail,
-            'audio' => $this->audio,
+            'audio' => url($this->audio),
             'creator' => $this->creator->name,
             'album' => $this->album->name,
             'gendre' => $this->gendre->name,

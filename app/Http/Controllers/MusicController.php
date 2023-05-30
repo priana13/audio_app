@@ -38,8 +38,11 @@ class MusicController extends Controller
         ]);
 
 
-        $path = $request->file('audio')->store('audio');
+        $real_path = $request->file('audio')->store('public/audio');
+        $path = explode('public/', $real_path);
+        $path = $path[1];
 
+        
         ($request->is_premium == 'on')? $is_premium = true : $is_premium = false;
 
                 
