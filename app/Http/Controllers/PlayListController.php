@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\MusicCollection;
 use App\Models\Music;
 use App\Models\PlayList;
+use App\Models\PlayListMusic;
 use Illuminate\Http\Request;
 
 class PlayListController extends Controller
@@ -126,5 +127,42 @@ class PlayListController extends Controller
         return response()->json([
             'message' => 'playlist was deleted'            
         ], 200);
+    }
+
+    public function store(Request $request, $id){
+
+        $request->validate([
+            'music_id' => 'required'
+        ]);
+        
+
+        // $play_list = PlayList::find($id);
+       
+        PlayListMusic::create([
+            'musics_id' => $request->music_id,
+            'playlist_id' => $id,
+            'user_id' => $request->user()->id
+        ]);
+
+        return response()->json([
+            'message' => 'Data telah ditembahkan'            
+        ], 201);
+        
+    }
+
+    public function delete_from_playlist(Request $request, $id){
+
+        $request->validate([
+            'music_id' => 'required'
+        ]);        
+
+        // $play_list = PlayList::find($id);
+       
+        PlayListMusic::where('music_id', $request->music_id)->where('playlist_id', $id)->delete();
+
+        return response()->json([
+            'message' => 'Data telah dihapus'            
+        ], 201);
+        
     }
 }
