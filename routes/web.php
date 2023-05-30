@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\MusicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/', function () {
     return redirect()->route('filament.pages.dashboard');
 });
+
+Route::post('music/store', [MusicController::class, 'store'])->name('music.store');
 
 
 // Auth::routes();

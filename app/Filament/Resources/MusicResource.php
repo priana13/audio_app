@@ -45,9 +45,9 @@ class MusicResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('creator.name'),  
-                Tables\Columns\TextColumn::make('audio'),
+                Tables\Columns\TextColumn::make('title')->searchable(),
+                Tables\Columns\TextColumn::make('creator.name')->searchable(),  
+                // Tables\Columns\TextColumn::make('audio'),
                 Tables\Columns\IconColumn::make('is_premium')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -78,5 +78,10 @@ class MusicResource extends Resource
             'create' => Pages\CreateMusic::route('/create'),
             'edit' => Pages\EditMusic::route('/{record}/edit'),
         ];
-    }    
+    }   
+    
+    public static function getEloquentQuery(): Builder
+{
+    return parent::getEloquentQuery()->orderBy('id', 'desc');
+}
 }

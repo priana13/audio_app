@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\MusicResource\Pages;
+namespace App\Http\Livewire;
 
-use App\Filament\Resources\MusicResource;
+use Livewire\Component;
 use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Music;
@@ -13,16 +13,24 @@ use Livewire\WithFileUploads;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Redirect;
 
-class CreateMusic extends CreateRecord
+class CreateAudioComponent extends Component
 {
     use WithFileUploads;
 
-    protected static string $resource = MusicResource::class;
+    public $judul, $creator_id, $audio, $detail, $url, $thumbnail, $is_premium = false, $artis_id, $album_id;
+    public $photo;
 
-    protected static string $view = 'filament.resources.music.create-audio';
 
-    // public $judul, $creator_id, $audio, $detail, $url, $thumbnail, $is_premium = false, $artis_id, $album_id;
+    public function render()
+    {
 
+
+        return view('livewire.create-audio-component',[
+            'creators' => Creator::all(),
+            'artists' => Artist::all(),
+            'albums' => Album::all(),
+        ]);
+    }
 
     public function simpan(){ 
 
@@ -32,10 +40,8 @@ class CreateMusic extends CreateRecord
             
         ]);   
         
-        $path = $this->audio->store('audio');
+        // $path = $this->audio->store('audio');
 
-        dd($path);
- 
         
         Music::create([
             'title' => $this->judul,
@@ -52,23 +58,5 @@ class CreateMusic extends CreateRecord
         Redirect::to('/admin/music');
 
 
-    }
-
-
-    public function render(): View
-    {
-        return view(static::$view, $this->getViewData())
-            ->layout(static::$layout, $this->getLayoutData());
-    }
-
-
-
-    protected function getViewData(): array
-    {
-        return [
-            'creators' => Creator::all(),
-            'artists' => Artist::all(),
-            'albums' => Album::all(),
-        ];
     }
 }
