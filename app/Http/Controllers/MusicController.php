@@ -85,7 +85,7 @@ class MusicController extends Controller
 
         }
         
-        ($request->is_premium == 'on')? $is_premium = true : $is_premium = false;
+        ($request->is_premium == 'on')? $is_premium = true : $is_premium = false;       
       
                 
         $audio = Music::where('id', $id)->update([
@@ -95,7 +95,8 @@ class MusicController extends Controller
             'thumbnail' => $request->thumbnail,
             'is_premium' => $is_premium, 
             'artist_id' => $request->artis_id,
-            'album_id' => $request->album_id
+            'album_id' => $request->album_id,
+            'gendre_id' => $request->gendre_id
 
         ]);
 
