@@ -37,6 +37,8 @@ class MusicController extends Controller
             'creator_id' => 'required'
         ]);
 
+        $extention = $request->file('audio')->getClientOriginalExtension();
+
 
         $real_path = $request->file('audio')->store('public/audio');
         $path = explode('public/', $real_path);
