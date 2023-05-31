@@ -19,12 +19,17 @@ Buat database di mysql / phpmyadmin dengan nama audo_app kemudian pastikan .env 
 
 kemudian: 
 
-php artisan migrate --seed
+php artisan migrate:fresh --seed
 
 php artisan serve
 
 Dokumentasi API bisa dilihat di sini: 
 - [Audio App - Postman](https://documenter.getpostman.com/view/12367169/2s93m1b5BJ)
+
+Akses Halaman Admin/Dashboard
+http://127.0.0.1:8000/admin
+  user: admin@example.com
+  pass: password
 
 selamat mencoba. 
 
