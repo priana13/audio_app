@@ -7,6 +7,7 @@ use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Music;
 use App\Models\Creator;
+use App\Models\Gendre;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Livewire\WithFileUploads;
@@ -69,6 +70,7 @@ class CreateMusic extends CreateRecord
             'creators' => Creator::all(),
             'artists' => Artist::all(),
             'albums' => Album::all(),
+            'gendres' => Gendre::all(),
         ];
     }
 }

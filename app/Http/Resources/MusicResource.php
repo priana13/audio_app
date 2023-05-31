@@ -20,10 +20,10 @@ class MusicResource extends JsonResource
             'detail' => $this->detail, 
             'url' => $this->url,
             'thumbnail' => $this->thumbnail,
-            'audio' => url($this->audio),
+            'audio' => asset( 'storage/'. $this->audio),
             'creator' => $this->creator->name,
             'album' => $this->album->name,
-            'gendre' => $this->gendre->name,
+            'gendre' => ($this->gendre)?$this->gendre->name:null,
             'artist' => $this->artist->name,
             'is_premium' => ($this->is_premium)? TRUE: FALSE
         ];

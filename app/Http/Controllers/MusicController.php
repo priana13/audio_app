@@ -56,7 +56,8 @@ class MusicController extends Controller
             'thumbnail' => $request->thumbnail,
             'is_premium' => $is_premium, 
             'artist_id' => $request->artis_id,
-            'album_id' => $request->album_id
+            'album_id' => $request->album_id,
+            'gendre_id' => $request->gendre_id
 
         ]);
 

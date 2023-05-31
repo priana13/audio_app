@@ -65,6 +65,21 @@
         @error('album_id') <span class="error">{{ $message }}</span> @enderror
     </div>
 
+    <div class="form-control w-full max-w-md">
+      <label class="label">
+      <span class="label-text">Gendre</span>
+      
+      </label>
+      <select class="select select-bordered" name="gendre_id">
+      <option value="">Pilih Gendre</option>
+      @foreach($gendres as $gendre)
+      <option value="{{ $gendre->id }}">{{ $gendre->name }}</option>
+      @endforeach
+      </select> 
+      
+      @error('gendre_id') <span class="error">{{ $message }}</span> @enderror
+  </div>
+
     
     <div class="form-control w-full max-w-md"
         
