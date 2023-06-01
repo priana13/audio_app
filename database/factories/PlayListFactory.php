@@ -19,7 +19,8 @@ class PlayListFactory extends Factory
         return [
             'user_id' => rand(1,10),
             'name' => $this->faker->sentence(2),
-            'detail' => $this->faker->sentence(6)
+            'detail' => $this->faker->sentence(6),
+            'thumbnail' => $this->faker->imageUrl()
         ];
     }
 }

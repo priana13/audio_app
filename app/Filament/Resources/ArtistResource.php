@@ -26,6 +26,8 @@ class ArtistResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+
+                Forms\Components\FileUpload::make('thumbnail')                    
             ]);
     }
 

@@ -28,6 +28,7 @@ class CreatorResource extends Resource
                     ->maxLength(100),
                 Forms\Components\TextInput::make('bio')
                     ->maxLength(255),
+                Forms\Components\FileUpload::make('thumbnail')
             ]);
     }
 

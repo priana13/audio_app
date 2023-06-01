@@ -18,6 +18,7 @@ class ArtistFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
+            'thumbnail' => $this->faker->imageUrl()
         ];
     }
 }

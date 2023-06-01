@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('gendres', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('thumbnail')->nullable();
             $table->timestamps();
         });
 
