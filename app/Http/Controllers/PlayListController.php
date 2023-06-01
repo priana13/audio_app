@@ -42,10 +42,22 @@ class PlayListController extends Controller
             ], 422);
         }
 
+        if($request->thumbnail){
+
+            $real_path = $request->file('thumbnail')->store('public/thumbnails');
+            $path = explode('public/', $real_path);  
+            $path= $path[1];  
+        }else{
+            $path = null;
+        }           
+      
+
         $playList = PlayList::create([
             'user_id' => $request->user()->id,
             'name' => $request->name,
-            'detail' => $request->detail
+            'detail' => $request->detail,
+            'thumbnail' => $path
+           
         ]);
 
         return response()->json($playList,201);
@@ -99,6 +111,20 @@ class PlayListController extends Controller
         $playList->name = $request->name;
         $playList->save();
 
+
+        if($request->thumbnail){
+
+            $real_path = $request->file('thumbnail')->store('public/thumbnails');
+            $path = explode('public/', $real_path);  
+            $path= $path[1];  
+
+            $playList = PlayList::find($id);
+            $playList->thumbnail = $path;
+            $playList->save();
+
+
+        }
+
         return response()->json([
             'message' => 'playlist was updated',
             'playlist' => $playList
@@ -133,8 +159,7 @@ class PlayListController extends Controller
 
         $request->validate([
             'music_id' => 'required'
-        ]);
-        
+        ]);        
 
         // $play_list = PlayList::find($id);
        

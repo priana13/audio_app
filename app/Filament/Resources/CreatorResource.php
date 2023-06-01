@@ -36,7 +36,7 @@ class CreatorResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
+                Tables\Columns\TextColumn::make('name')->searchable(),
                 Tables\Columns\TextColumn::make('bio'),
                 Tables\Columns\TextColumn::make('musics_count')->counts('musics')->label('Musicss')
             ])
