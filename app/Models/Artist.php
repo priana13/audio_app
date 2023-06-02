@@ -11,6 +11,8 @@ class Artist extends Model
 
     protected $hidden = ['created_at', 'updated_at'];
 
+    protected $guarded = [];
+
     public function musics(){
 
         return $this->hasMany(Music::class);
